@@ -44,6 +44,10 @@ gap: 1rem;
   flex-direction: row;
   align-items: flex-start;
 }
+
+@media (max-width: 768px) {
+  flex-direction: column;
+}
 `;
 
 const TextContent = styled.div`
@@ -89,17 +93,18 @@ gap: 1rem;
 `;
 const Title = styled.h3`
  color: #a71c1c;
+ margin-bottom: 1rem;
 
 `;
 
 const SubTitle = styled.h4`
 color: #a71c1cb3;
-padding-top: 1rem;
-padding-bottom: 0.5rem;
+margin-bottom: 0.5rem;
 `;
 
 const Parrafo = styled.p`
  color: ${({ theme }) => theme.text};
+ margin: 1rem 0 1rem 0;
 `;
 
 function ProyectDetail() {

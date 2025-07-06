@@ -10,7 +10,7 @@ import {
 } from "./Sidebar.styles";
 import { mainLinks } from "./SidebarLinks.jsx";
 import { ThemeToggle } from "./ThemeToggle";
-import logo from "../../assets/Logo.webp";
+import logo from "../../assets/Logo22.webp";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 

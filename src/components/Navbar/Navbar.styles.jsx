@@ -23,6 +23,10 @@ export const Nav = styled.nav`
   &.nav-hidden {
     transform: translateY(-100%) translateX(-50%);
   }
+
+  @media (max-width: 768px) {
+    width: 72%;
+  }
 `
 
 export const Ul = styled.ul`
@@ -51,7 +55,8 @@ export const Li = styled.li`
 
   /* &:active {
     background: linear-gradient(45deg, #4f1919, #ff3333);
-     border-radius: 10px;    
+     border-radius: 10px;  
+     padding: 2rem;  
   } */
 
 `
