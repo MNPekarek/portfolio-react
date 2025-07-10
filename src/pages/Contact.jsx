@@ -1,5 +1,10 @@
 import { useState } from "react";
+import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
+import { IoMdMail } from "react-icons/io";
 import styled from "styled-components";
+import emailjs from "emailjs-com";
+
+
 
 export function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -10,10 +15,21 @@ export function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Mensaje enviado:", form);
-
-    // Aqui podrias enviar datos a Fomspree o EmailJs
-    setForm({ name: "", email: "", message: "" });
+    
+    emailjs.send(
+      "service_e4nv30g",
+      "template_l979kqf",
+      form,
+      "86BgtOWkhPSu_ArAq"
+    )
+    .then(() => {
+      alert("Mensaje enviado con éxito");
+      setForm({ name: "", email: "", message: "" });
+    })
+    .catch((error) => {
+      console-error("Error al enviar:", error);
+      alert("hubo un problema...");
+    });
   };
 
   return (
@@ -48,16 +64,16 @@ export function Contact() {
         <button type="submit">Enviar</button>
       </Form>
       <Social>
-        <a href="mailto:matiaspekarek@gmail.com">Email</a>
-        <a href="https://github.com/mati-dev" target="_blank" rel="noreferrer">
-          💻 GitHub
+        <a href="mailto:matiaspekarek@gmail.com"> <IoMdMail/> Email</a>
+        <a href="https://github.com/MNPekarek" target="_blank" rel="noreferrer">
+           <FaGithubSquare/> GitHub
         </a>
         <a
-          href="https://linkedin.com/in/mati-dev"
+          href="https://www.linkedin.com/in/matias-nicolas-pekarek-14597b281"
           target="_blank"
           rel="noreferrer"
         >
-          🔗 LinkedIn
+          <FaLinkedin /> LinkedIn
         </a>
       </Social>
     </Container>
