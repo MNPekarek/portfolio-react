@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { motion } from "framer-motion";
+import AnimatedGridItem from "./AnimatedGridItem";
 
 const SectionContainer = styled.section`
   background-color: #000;
@@ -17,13 +19,18 @@ const HeaderCard = styled.div`
   box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.2);
   max-width: 600px;
 `;
+
+const MotionHeaderCard = motion.create(HeaderCard);
+
 const Title = styled.h1`
   font-size: 2rem;
   font-weight: bold;
+  line-height: 1.2;
 `;
 const Description = styled.p`
   margin: 1rem 0;
   font-size: 1.1rem;
+  line-height: 1.5;
 `;
 const CTAButton = styled.button`
   background-color: #ff0000;
@@ -66,42 +73,72 @@ const GridItem = styled.div`
   p {
     font-size: 1rem;
   }
+  li {
+    list-style: none;
+    line-height: 1.3;
+  }
 `;
 
+const MotionGridItem = motion.create(GridItem);
+
 const Info = () => {
+
+  const sections = [
+  {
+    title: "🚀 Stack",
+    items: [
+      "🧠 Frontend: HTML, CSS/SCSS, JavaScript, React, Framer Motion",
+      "🛠️ Backend: Node.js, Express, MongoDB, WebSockets, REST APIs",
+      "📦 Extras: Firebase, Cloudinary, GitHub, Vercel, localStorage",
+    ],
+  },
+  {
+    title: "💡 Especialidad",
+    items: [
+      "Diseño de interfaces dinámicas, escalables y con personalidad.",
+      "Componentes reutilizables, animaciones fluidas y experiencia de usuario pensada al detalle.",
+      "Integración full-stack con actualizaciones en tiempo real y estructura modular.",
+    ],
+  },
+  {
+    title: "🎯 Objetivo",
+    items: [
+      "Crear soluciones que combinen precisión técnica con diseño visual potente.",
+      "Desarrollar e-commerce, dashboards y productos que se sientan vivos.",
+      "Buscar oportunidades freelance o full-time para seguir creciendo como desarrollador.",
+    ],
+  },
+]; 
+
   return (
     <SectionContainer>
-      <HeaderCard>
-        <Title>Desarrollador Frontend | Interfaces con identidad propia</Title>
+      <MotionHeaderCard
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <Title>
+          Desarrollador Full-Stack | Interfaces con identidad propia
+        </Title>
         <Description>
-          Dominio de React, rutas, estado global, diseño pixel-perfect y
-          animaciones con Framer Motion. Trabajo con APIs (Fetch, Axios),
-          Firebase, Cloudinary y Vercel. En formación backend con Node.js,
-          MongoDB y Express.
+          React, MongoDB, WebSockets y diseño visual que impacta. Certificado en
+          Backend Avanzado. Cursando Backend 2 y becas de Google en Cloud, Data
+          e IA.
         </Description>
         <Link to="/proyectos">
           <CTAButton>Explorá mis proyectos</CTAButton>
         </Link>
-      </HeaderCard>
+      </MotionHeaderCard>
 
       <GridContainer>
-        <GridItem>
-          <h2>🚀 Stack</h2>
-          <p>HTML, CSS/SCSS, JavaScript, React, Firebase, GitHub</p>
-        </GridItem>
-        <GridItem>
-          <h2>💡 Especialidad</h2>
-          <p>
-            UI/UX con diseño visual audaz, componentes reutilizables,
-            animaciones envolventes
-          </p>
-        </GridItem>
-        <GridItem>
-          <h2>🎯 Objetivo</h2>
-          <p>
-            Crear experiencias fluidas, escalables y con impacto visual real
-          </p>
-        </GridItem>
+        {sections.map((section, i) => (
+          <AnimatedGridItem
+          key={section.title}
+          title={section.title}
+          items={section.items}
+          delay={i * 0.4}
+          />
+        ))}
       </GridContainer>
     </SectionContainer>
   );

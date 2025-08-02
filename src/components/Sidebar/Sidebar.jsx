@@ -14,8 +14,6 @@ import logo from "../../assets/Logo22.webp";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-
-
 export const SidebarDescription = styled.p`
   font-size: 1rem;
   line-height: 1.6;
@@ -48,7 +46,13 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
   return (
     <Containerr className={sidebarOpen ? "open" : ""}>
-      <div style={{display: "flex", alignItems: "center", justifyContent:"center"}}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <Logo onClick={handleClick}>
           <img src={logo} alt="" />
         </Logo>
@@ -57,11 +61,11 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       </div>
 
       <SidebarDescription $isOpen={sidebarOpen}>
-        Frontend Developer creativo Experto en diseño responsivo, animaciones
-        con Framer Motion y componentes escalables con styled-components. Uso
-        React, Context, rutas, SCSS, APIs, Firebase, Cloudinary y más.
-        Aprendiendo backend con MongoDB, REST, Express. Explorando soluciones
-        que conecten código con experiencia.
+        Frontend Developer creativo Apasionado por el diseño responsivo,
+        animaciones con Framer Motion y componentes escalables con
+        styled-components. Trabajo con React, Context, rutas, SCSS, APIs,
+        Firebase, Cloudinary y más. Certificado en Backend Avanzado con Node.js,
+        Express, MongoDB y WebSockets.
       </SidebarDescription>
 
       <Divider $isOpen={sidebarOpen} />
@@ -69,12 +73,15 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       <LinksContainer>
         {/* <Title isOpen={sidebarOpen}>Menú</Title> */}
         {mainLinks.map(({ label, icon, to, external }) => (
-          <LinkItem key={label} to={to} $isOpen={sidebarOpen}
-           as={external ? 'a' : Link}
-           href={external ? to : undefined}
-           target={external ? '_blank' : undefined}
-           rel={external ? 'noopener noreferrer' : undefined}
-           >
+          <LinkItem
+            key={label}
+            to={to}
+            $isOpen={sidebarOpen}
+            as={external ? "a" : Link}
+            href={external ? to : undefined}
+            target={external ? "_blank" : undefined}
+            rel={external ? "noopener noreferrer" : undefined}
+          >
             <div className="icon">{icon}</div>
             <span>{label}</span>
           </LinkItem>
