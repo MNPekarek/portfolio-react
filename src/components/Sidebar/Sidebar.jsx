@@ -18,10 +18,11 @@ export const SidebarDescription = styled.p`
   font-size: 1rem;
   line-height: 1.6;
   color: ${({ theme }) => theme.textsoft};
-  background: rgba(255, 255, 255, 0.05);
+  background: ${({ theme }) => theme.surface};
   padding: ${({ $isOpen }) => ($isOpen ? "1rem 1.2rem" : "0")};
-  border-left: ${({ $isOpen }) => ($isOpen ? "3px solid #ff0000 " : "none")};
-  border-radius: 8px;
+  border-left: ${({ $isOpen, theme }) =>
+    $isOpen ? `3px solid ${theme.accent}` : "none"};
+  border-radius: 12px;
   margin-top: ${({ $isOpen }) => ($isOpen ? "1rem" : "0")};
   opacity: ${({ $isOpen }) => ($isOpen ? "1" : "0")};
   visibility: ${({ $isOpen }) => ($isOpen ? "visible" : "hidden")};
@@ -30,9 +31,10 @@ export const SidebarDescription = styled.p`
   transform: ${({ $isOpen }) =>
     $isOpen ? "translateY(0)" : "translateY(-10px)"};
   transition: all 0.3s ease;
+  box-shadow: 0 20px 40px rgba(5, 0, 15, 0.35);
 
   &:hover {
-    background: rgba(255, 255, 255, 0.01);
+    background: ${({ theme }) => theme.surfaceHover};
   }
 
   @media (max-width: 768px) {

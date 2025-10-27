@@ -110,32 +110,37 @@ const Paginacion = styled.div`
 `;
 
 const Boton = styled.button`
-  background: ${({ disabled }) => (disabled ? "#d1d5db" : "#6d8b6c")};
-  color: ${({ disabled }) => (disabled ? "#9ca3af" : "#fff")};
-  padding: 0.6rem 1.4rem;
+  background: ${({ disabled, theme }) =>
+    disabled ? theme.surface : theme.accentGradient};
+  color: ${({ disabled, theme }) => (disabled ? theme.textsoft : "#fff")};
+  padding: 0.65rem 1.6rem;
   border: none;
-  border-radius: 8px;
-  font-weight: 500;
+  border-radius: 999px;
+  font-weight: 600;
   font-size: 1rem;
   cursor: ${({ disabled }) => (disabled ? "default" : "pointer")};
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  transition: all 0.2s ease;
+  box-shadow: ${({ disabled }) =>
+    disabled ? "none" : "0 16px 35px rgba(168, 85, 247, 0.35)"};
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    filter 0.3s ease;
 
   &:hover {
-    background: ${({ disabled }) => (disabled ? "#d1d5db" : "#5b7760")};
+    transform: ${({ disabled }) => (disabled ? "none" : "translateY(-2px)")};
+    filter: ${({ disabled }) => (disabled ? "none" : "brightness(1.05)")};
   }
 `;
 
 
 const PaginaTexto = styled.span`
   font-size: 1rem;
-  color: #b91f1f;
+  color: ${({ theme }) => theme.accent};
+  font-weight: 600;
 `;
 
 const Title = styled(motion.h2)`
   padding-left: 2rem;
   font-size: 2.4rem;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.textprimary};
   text-align: center;
   font-weight: 700;
   letter-spacing: 0.05rem;
@@ -151,7 +156,8 @@ const Title = styled(motion.h2)`
     transform: translateX(-50%);
     width: 60%;
     height: 3px;
-    background-color: #b91f1f;    
+    background: ${({ theme }) => theme.accentGradient};
+    border-radius: 999px;
   }
 
   &:hover::after {
@@ -160,20 +166,24 @@ const Title = styled(motion.h2)`
 `;
 
 const CatalogWrapper = styled.div`
-  padding: 4rem 2rem;
-  /* background: linear-gradient(to bottom, #fdfdfd, #f2f4f2); */
+  padding: 5rem 2.5rem;
   min-height: 100vh;
+  background: ${({ theme }) => theme.pageGradient};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 `;
 const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.2rem;
   justify-content: center;
-  padding: 0 1rem;
+  width: 100%;
 `;
 const Message = styled.p`
   text-align: center;
-  color: #85928f;
+  color: ${({ theme }) => theme.textsoft};
   font-size: 1.1rem;
   margin-top: 3rem;
 `;

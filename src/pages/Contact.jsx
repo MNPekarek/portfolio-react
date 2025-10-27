@@ -4,8 +4,6 @@ import { IoMdMail } from "react-icons/io";
 import styled from "styled-components";
 import emailjs from "emailjs-com";
 
-
-
 export function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
@@ -27,7 +25,7 @@ export function Contact() {
       setForm({ name: "", email: "", message: "" });
     })
     .catch((error) => {
-      console-error("Error al enviar:", error);
+      console.error("Error al enviar:", error);
       alert("hubo un problema...");
     });
   };
@@ -81,9 +79,9 @@ export function Contact() {
 }
 
 const Container = styled.div`
-  height: 100vh;
-  padding: 4rem 2rem;
-  background-color: ${({ theme }) => theme.bg};
+  min-height: 100vh;
+  padding: 5rem 2rem;
+  background: ${({ theme }) => theme.pageGradient};
   color: ${({ theme }) => theme.text};
   display: flex;
   flex-direction: column;
@@ -93,72 +91,88 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1`
-font-size: 2.5rem;
-color: #861e1e;
+  font-size: 2.8rem;
+  color: ${({ theme }) => theme.accent};
+  text-align: center;
 `;
 
 const Text = styled.p`
-font-size: 1.2rem;
-text-align: center;
-max-width: 600px;
+  font-size: 1.2rem;
+  text-align: center;
+  max-width: 620px;
+  color: ${({ theme }) => theme.textsecondary};
 `;
 
 const Form = styled.form`
-display: flex;
-flex-direction: column;
-gap: 1rem;
-width: 100%;
-max-width: 500px; 
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 520px;
 
-input, textarea {
-  padding: 1rem;
-  border: 2px solid #861e1e;
-  border-radius: 8px;
-  background: gray;
-  color: ${({ theme }) => theme.text};
-  font-size: 1rem;
-  resize: none; 
-  cursor: pointer;
+  input,
+  textarea {
+    padding: 1rem 1.1rem;
+    border: 1px solid ${({ theme }) => theme.border};
+    border-radius: 16px;
+    background: ${({ theme }) => theme.surface};
+    color: ${({ theme }) => theme.text};
+    font-size: 1rem;
+    resize: none;
+    transition: border 0.3s ease, box-shadow 0.3s ease,
+      transform 0.3s ease;
 
-  &::placeholder {
-    color: #e7b1b1;
+    &::placeholder {
+      color: ${({ theme }) => theme.texttertiary};
+    }
+
+    &:focus {
+      outline: none;
+      border: 1px solid ${({ theme }) => theme.accent};
+      box-shadow: 0 12px 30px rgba(168, 85, 247, 0.35);
+      transform: translateY(-2px);
+    }
   }
 
-  &:focus {
-  outline: none;
-  border: 2px solid #d54747;
-}
-}
+  button {
+    padding: 0.9rem;
+    border: none;
+    border-radius: 999px;
+    background: ${({ theme }) => theme.accentGradient};
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-button {
-  padding: 0.8rem;
-  border: none;
-  border-radius: 8px;
-  background: #861e1e;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-
-  &:hover {
-    background: #a52828;
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 35px rgba(168, 85, 247, 0.45);
+    }
   }
-}
 `;
 
 const Social = styled.div`
-display: flex;
-gap: 1rem;
-margin-top: 2rem;
-padding-bottom: 1rem;
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 2.5rem;
+  padding-bottom: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
 
-a {
-  color: ${({ theme }) => theme.text};
-  text-decoration: none;
-  font-weight: 600;
+  a {
+    color: ${({ theme }) => theme.accent};
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 1rem;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 
-  &:hover {
-    text-decoration: underline;
+    &:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
   }
-}
 `;

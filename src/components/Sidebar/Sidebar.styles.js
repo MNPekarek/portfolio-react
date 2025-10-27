@@ -6,7 +6,9 @@ import { NavLink } from "react-router-dom";
 export const Containerr = styled.div`
   width: ${({ className }) => (className === "open" ? "300px" : "90px")};
   min-height: 100vh;
-  background: ${({ theme }) => theme.bgSidebarMaty};
+  background: ${({ theme }) => theme.surfaceDeep};
+  backdrop-filter: blur(28px);
+  border-right: 1px solid ${({ theme }) => theme.border};
   color: ${({ theme }) => theme.text};
   display: flex;
   flex-direction: column;
@@ -15,7 +17,8 @@ export const Containerr = styled.div`
   top: 0;
   left: 0;
   z-index: 100;
-  
+  box-shadow: ${({ theme }) => theme.cardShadow};
+
   overflow-y: auto;
   overflow-x: hidden;
 
@@ -59,6 +62,7 @@ export const LinkItem = styled(NavLink)`
   font-size: 14px;
   font-weight: 500;
   background: transparent;
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 
   span {
     opacity: ${({ $isOpen }) => ($isOpen ? "1" : "0")};
@@ -70,8 +74,15 @@ export const LinkItem = styled(NavLink)`
   }
 
   &:hover {
-    
-    background: linear-gradient(45deg, #4f1919, #ff3333);
+    background: ${({ theme }) => theme.accentSoft};
+    color: #fff;
+    box-shadow: 0 10px 25px rgba(168, 85, 247, 0.25);
+  }
+
+  &.active {
+    background: ${({ theme }) => theme.accentGradient};
+    color: #fff;
+    box-shadow: 0 12px 30px rgba(168, 85, 247, 0.35);
   }
 `;
 // background: ${({ theme }) => theme.bg3};
@@ -81,7 +92,7 @@ export const Title = styled.div`
   font-weight: 600;
   /* margin-bottom: 10px; */
   padding-left: 10px;
-  color: red; 
+  color: ${({ theme }) => theme.accent};
   opacity: ${({ $isOpen }) => ($isOpen ? "1" : "0")};
   visibility: ${({ $isOpen }) => ($isOpen ? "visible" : "hidden")};
   height: ${({ $isOpen }) => ($isOpen ? "auto" : "0")};
@@ -94,7 +105,7 @@ export const Title = styled.div`
 
 export const Divider = styled.div`
   height: 1px;
-  background: ${({ theme }) => theme.bg3};
+  background: ${({ theme }) => theme.accentSoft};
   margin: ${({ $isOpen }) => ($isOpen ? "1rem" : "0")};
   /* margin: 20px 0; */
   border-radius: 1px;

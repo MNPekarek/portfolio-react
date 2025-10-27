@@ -4,20 +4,24 @@ import { motion } from "framer-motion";
 import AnimatedGridItem from "./AnimatedGridItem";
 
 const SectionContainer = styled.section`
-  background-color: #000;
-  color: #fff;
-  padding: 4rem 2rem;
+  position: relative;
+  background: ${({ theme }) => theme.pageGradient};
+  color: ${({ theme }) => theme.text};
+  padding: 4rem 2rem 6rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  gap: 3rem;
 `;
 const HeaderCard = styled.div`
-  background: linear-gradient(135deg, #8b0000, #600000);
-  padding: 2.5rem;
-  border-radius: 12px;
-  box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.2);
-  max-width: 600px;
+  background: ${({ theme }) => theme.accentGradient};
+  padding: 2.8rem;
+  border-radius: 24px;
+  box-shadow: 0 30px 70px rgba(168, 85, 247, 0.35);
+  max-width: 680px;
+  width: 100%;
+  backdrop-filter: blur(18px);
 `;
 
 const MotionHeaderCard = motion.create(HeaderCard);
@@ -28,54 +32,62 @@ const Title = styled.h1`
   line-height: 1.2;
 `;
 const Description = styled.p`
-  margin: 1rem 0;
+  margin: 1rem 0 2rem;
   font-size: 1.1rem;
-  line-height: 1.5;
+  line-height: 1.6;
+  color: ${({ theme }) => theme.textsecondary};
 `;
 const CTAButton = styled.button`
-  background-color: #ff0000;
+  background: ${({ theme }) => theme.accentGradient};
   color: #fff;
-  padding: 0.8rem 1.5rem;
+  padding: 0.9rem 1.8rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 999px;
   font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 4px 8px rgba(255, 0, 0, 0.3);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 16px 35px rgba(168, 85, 247, 0.45);
   }
 `;
 const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin-top: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.8rem;
   width: 100%;
   max-width: 1200px;
 `;
 const GridItem = styled.div`
-  background: rgba(255, 255, 255, 0.1);
-  padding: 1.5rem;
-  border-radius: 8px;
-  transition: background 0.3s ease;
+  background: ${({ theme }) => theme.surface};
+  padding: 1.8rem;
+  border-radius: 20px;
+  border: 1px solid ${({ theme }) => theme.border};
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background 0.3s ease;
+  backdrop-filter: blur(18px);
 
   &:hover {
-    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 45px rgba(5, 0, 20, 0.4);
+    background: ${({ theme }) => theme.surfaceHover};
   }
 
   h2 {
-    font-size: 1.4rem;
-    color: #ff4d4d;
+    font-size: 1.35rem;
+    color: ${({ theme }) => theme.accent};
+    margin-bottom: 0.75rem;
   }
 
-  p {
-    font-size: 1rem;
-  }
+  p,
   li {
+    font-size: 1rem;
     list-style: none;
-    line-height: 1.3;
+    line-height: 1.6;
+    color: ${({ theme }) => theme.textsecondary};
   }
 `;
 
