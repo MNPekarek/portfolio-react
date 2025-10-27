@@ -8,22 +8,28 @@ const CardLink = styled(Link)`
 `;
 
 const Card = styled.div`
-  /* background-color: #fefdf6; */
-  border-radius: 12px;
-  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08);
-  padding: 1.5rem;
-  transition: transform 0.2s ease-in-out;
+  border-radius: 20px;
+  padding: 1.8rem 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background 0.3s ease;
   text-align: center;
-   color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.text};
+  background: ${({ theme }) => theme.surface};
+  border: 1px solid ${({ theme }) => theme.border};
+  backdrop-filter: blur(18px);
+  box-shadow: ${({ theme }) => theme.cardShadow};
 
   &:hover {
-    transform: scale(1.02);
+    transform: translateY(-6px);
+    box-shadow: 0 24px 55px rgba(5, 0, 20, 0.45);
+    background: ${({ theme }) => theme.surfaceHover};
   }
 `;
 
 const CardHeader = styled.h3`
   margin-bottom: 1rem;
-  color: #b91f1f;
+  color: ${({ theme }) => theme.accent};
+  font-size: 1.4rem;
 `;
 
 const CardImage = styled.img`
@@ -37,25 +43,26 @@ const CardImage = styled.img`
 
 const AddButton = styled.button`
   margin-top: 1rem;
-  background-color: #aacaa5;
-  color: white;
+  background: ${({ theme }) => theme.accentGradient};
+  color: #fff;
   border: none;
   padding: 0.6rem 1.2rem;
-  border-radius: 10px;
-  font-weight: 500;
+  border-radius: 999px;
+  font-weight: 600;
   letter-spacing: 0.5px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {
-    background-color: #8fba87;
+    transform: translateY(-1px);
+    box-shadow: 0 12px 30px rgba(168, 85, 247, 0.35);
   }
 `;
 const PopMsg = styled.span`
   margin-top: 0.6rem;
   display: inline-block;
-  background-color: #eaf9e9;
-  color: #4caf50;
+  background-color: rgba(192, 132, 252, 0.15);
+  color: ${({ theme }) => theme.accent};
   padding: 0.4rem 0.8rem;
   border-radius: 8px;
   font-size: 0.85rem;
@@ -79,14 +86,15 @@ const PopMsg = styled.span`
 `;
 
 const Parrafo = styled.p`
- color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.textsecondary};
+  line-height: 1.6;
 `;
 
 
 function Proyectos({ proyecto }) {
 
     if(!proyecto) {
-        return <p style={{ color: "#b91c1c", textAlign: "center"}}>Proyecto no disponible</p>
+        return <p style={{ color: "#c084fc", textAlign: "center"}}>Proyecto no disponible</p>
     }
   const { id, name, img, descripcion } = proyecto;
 

@@ -2,19 +2,21 @@ import styled from "styled-components"
 
 export const Nav = styled.nav`
   position: fixed;
-  top: 0;
+  top: 1rem;
   left: 50%;
   width: 52.5%;
   height: 60px;
-  background: rgba(34, 34, 34, 0.9);
-  backdrop-filter: blur(10px);
-  border-radius: 8px;
+  background: ${({ theme }) => theme.navGlass};
+  backdrop-filter: blur(22px);
+  border-radius: 16px;
+  border: 1px solid ${({ theme }) => theme.border};
+  box-shadow: ${({ theme }) => theme.cardShadow};
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem;
   transform: translateX(-50%);
-  transition: transform 0.4s ease-in-out;
+  transition: transform 0.4s ease-in-out, box-shadow 0.4s ease;
 
   &.nav-visible {
     transform: translateY(0) translateX(-50%);
@@ -25,7 +27,8 @@ export const Nav = styled.nav`
   }
 
   @media (max-width: 768px) {
-    width: 72%;
+    width: 88%;
+    top: 0.75rem;
   }
 `
 
@@ -45,39 +48,41 @@ export const Ul = styled.ul`
 export const Li = styled.li`
   position: relative;
   z-index: 1;
-  padding: 5px 15px;
-  border-radius: 10px;
+  padding: 5px 12px;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
 
-  /* &:hover {
-     background: linear-gradient(45deg, #4f1919, #ff3333);
-     border-radius: 10px;
-  } */
-
-  /* &:active {
-    background: linear-gradient(45deg, #4f1919, #ff3333);
-     border-radius: 10px;  
-     padding: 2rem;  
-  } */
-
+  &:hover {
+    transform: translateY(-2px);
+  }
 `
 
 export const Anchor = styled.a`
   display: block;
   font-size: 1rem;
   font-weight: 500;
-  color: #fff;
+  color: ${({ theme }) => theme.text};
   text-decoration: none;
-  padding: 15px 23px;
+  padding: 12px 20px;
+  border-radius: 10px;
   transition: 0.3s ease all;
 
   &.active {
-    background: linear-gradient(45deg, #4f1919, #ff3333);
-    border-radius: 10px;    
+    background: ${({ theme }) => theme.accentGradient};
+    box-shadow: 0 12px 30px rgba(168, 85, 247, 0.35);
+    color: #fff;
+  }
+
+  &:hover {
+    background: ${({ theme }) => theme.accentSoft};
+    color: #fff;
   }
 
   @media (max-width: 768px) {
-    span {display: none;}
-    padding: 15px 0.5rem;    
+    span {
+      display: none;
+    }
+    padding: 12px 0.5rem;
   }
 `
 
@@ -87,8 +92,8 @@ export const Highlight = styled.span`
   left: 0;
   width: 110px;
   height: 100%;
-  background: linear-gradient(45deg, #4f1919, #ff3333);
-  border-radius: 8px;
+  background: ${({ theme }) => theme.accentGradient};
+  border-radius: 12px;
   transition: 0.5s ease-in-out;
 
   /* Agregá lógicas condicionales con props si después querés hacer dinámica su posición */

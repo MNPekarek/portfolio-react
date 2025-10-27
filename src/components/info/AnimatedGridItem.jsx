@@ -1,12 +1,12 @@
-import {motion, useAnimation } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
-
-motion
+import { useTheme } from "styled-components";
 
 const AnimatedGridItem = ({ title, items, delay = 0 }) => {
-  const controls = useAnimation(); 
+  const controls = useAnimation();
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
+  const theme = useTheme();
 
   useEffect(() => {
     if (inView) {
@@ -21,15 +21,33 @@ const AnimatedGridItem = ({ title, items, delay = 0 }) => {
       animate={controls}
       transition={{ duration: 0.6, delay }}
       style={{
-        background: "rgba(255, 255, 255, 0.1)",
-        padding: "1.5rem",
-        borderRadius: "8px",
+        background: theme.surface,
+        padding: "1.8rem",
+        borderRadius: "20px",
+        border: `1px solid ${theme.border}`,
+        backdropFilter: "blur(18px)",
+        boxShadow: theme.cardShadow,
+        color: theme.text,
       }}
     >
-      <h2>{title}</h2>
+      <h2 style={{
+        color: theme.accent,
+        fontSize: "1.35rem",
+        marginBottom: "0.75rem",
+      }}>
+        {title}
+      </h2>
       <ul>
         {items.map((item, i) => (
-          <li key={i} style={{ listStyle: "none", lineHeight: "1.6" }}>
+          <li
+            key={i}
+            style={{
+              listStyle: "none",
+              lineHeight: "1.6",
+              color: theme.textsecondary,
+              fontSize: "1rem",
+            }}
+          >
             {item}
           </li>
         ))}
